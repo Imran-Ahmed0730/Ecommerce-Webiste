@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyCommerceController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,7 @@ use App\Http\Controllers\CheckoutController;
 Route::get('/', [MyCommerceController::class, 'index'])->name('home');
 Route::get('/category', [MyCommerceController::class, 'category'])->name('category');
 Route::get('/details', [MyCommerceController::class, 'details'])->name('details');
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::get('/show-cart', [CartController::class, 'index'])->name('show-cart');
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 
 Route::middleware([
@@ -26,7 +27,5 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });

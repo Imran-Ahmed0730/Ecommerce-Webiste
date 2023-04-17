@@ -53,7 +53,7 @@
                 <div class="cart-single-list">
                     <div class="row align-items-center">
                         <div class="col-lg-1 col-md-1 col-12">
-                            <a href="product-details.html"><img src="assets/images/cart/01.jpg" alt="#"></a>
+                            <a href="product-details.html"><img src="{{asset('website')}}/assets/images/cart/01.jpg" alt="#"></a>
                         </div>
                         <div class="col-lg-4 col-md-3 col-12">
                             <h5 class="product-name"><a href="product-details.html">
@@ -90,7 +90,7 @@
                 <div class="cart-single-list">
                     <div class="row align-items-center">
                         <div class="col-lg-1 col-md-1 col-12">
-                            <a href="product-details.html"><img src="assets/images/cart/02.jpg" alt="#"></a>
+                            <a href="product-details.html"><img src="{{asset('website')}}/assets/images/cart/02.jpg" alt="#"></a>
                         </div>
                         <div class="col-lg-4 col-md-3 col-12">
                             <h5 class="product-name"><a href="product-details.html">
@@ -127,7 +127,7 @@
                 <div class="cart-single-list">
                     <div class="row align-items-center">
                         <div class="col-lg-1 col-md-1 col-12">
-                            <a href="product-details.html"><img src="assets/images/cart/03.jpg" alt="#"></a>
+                            <a href="product-details.html"><img src="{{asset('website')}}/assets/images/cart/03.jpg" alt="#"></a>
                         </div>
                         <div class="col-lg-4 col-md-3 col-12">
                             <h5 class="product-name"><a href="product-details.html">HP LaserJet Pro Laser Printer</a></h5>
@@ -186,7 +186,7 @@
                                         <li class="last">You Pay<span>$2531.00</span></li>
                                     </ul>
                                     <div class="button">
-                                        <a href="checkout.html" class="btn">Checkout</a>
+                                        <a href="{{route('checkout')}}" class="btn">Checkout</a>
                                         <a href="product-grids.html" class="btn btn-alt">Continue shopping</a>
                                     </div>
                                 </div>
