@@ -12,6 +12,7 @@
                     <tr>
                         <th>SL</th>
                         <th>Category Name</th>
+                        <th>Sub-Category Name</th>
                         <th>Description</th>
                         <th>Image</th>
                         <th>Status</th>
@@ -20,37 +21,38 @@
                     </thead>
                     <tbody>
                     @php $i = 1 @endphp
-                    @foreach($categories as $category)
+                    @foreach($subcategories as $subcategory)
                         <tr>
                             <td>{{$i++}}</td>
-                            <td>{{$category->name}}</td>
-                            <td class="col-md-3">{{$category->description}}</td>
+                            <td>{{$subcategory->category_id}}</td>
+                            <td>{{$subcategory->name}}</td>
+                            <td class="col-md-3">{{$subcategory->description}}</td>
                             <td>
-                                <img src="{{asset($category->image)}}" alt="" srcset="" class="img-fluid" width="200px">
+                                <img src="{{asset($subcategory->image)}}" alt="" srcset="" class="img-fluid" width="200px">
                             </td>
                             <td>
-                                @if($category->status == 1)
+                                @if($subcategory->status == 1)
                                     <span class="text-success">Published</span>
                                 @else
                                     <span class="text-warning">Unpublished</span>
                                 @endif
                             </td>
                             <td>
-                                <a href="{{route('category.edit', ['id'=>$category->id])}}" class="btn btn-success">
+                                <a href="{{route('category.edit', ['id'=>$subcategory->id])}}" class="btn btn-success">
                                     <i class="ti ti-layout-media-center"></i>
                                 </a>
-                                @if($category->status == 1)
-                                    <a href="{{route('category.status', ['id'=>$category->id])}}" class="btn btn-warning">
+                                @if($subcategory->status == 1)
+                                    <a href="{{route('subcategory.status', ['id'=>$subcategory->id])}}" class="btn btn-warning">
                                         <i class="ti ti-book"></i>
                                     </a>
-                                    @else
-                                    <a href="{{route('category.status', ['id'=>$category->id])}}" class="btn btn-success">
+                                @else
+                                    <a href="{{route('subcategory.status', ['id'=>$subcategory->id])}}" class="btn btn-success">
                                         <i class="ti ti-bookmark"></i>
                                     </a>
                                 @endif
-                                <form action="{{route('category.delete')}}" method="post">
+                                <form action="{{route('subcategory.delete')}}" method="post">
                                     @csrf
-                                    <input type="hidden" name="id" value="{{$category->id}}">
+                                    <input type="hidden" name="id" value="{{$subcategory->id}}">
                                     <button type="submit" class="btn btn-danger"><i class="ti ti-trash"></i></button>
                                 </form>
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,5 +40,15 @@ Route::middleware([
     Route::post('/category/update', [CategoryController::class, 'updateCategory'])->name('category.update');
     Route::get('/category/status-change/{id}', [CategoryController::class, 'statusCategory'])->name('category.status');
     Route::post('/category/delete', [CategoryController::class, 'deleteCategory'])->name('category.delete');
+
+    //SubCategory Module
+
+    Route::get('/subcategory/add', [SubCategoryController::class, 'index'])->name('add.subcategory');
+    Route::get('/subcategory/manage', [SubCategoryController::class, 'manage'])->name('manage.subcategory');
+    Route::post('/subcategory/new', [SubCategoryController::class, 'newSubCategory'])->name('subcategory.new');
+    Route::get('/subcategory/edit/{id}', [SubCategoryController::class, 'editSubCategory'])->name('subcategory.edit');
+    Route::post('/subcategory/update', [SubCategoryController::class, 'updateSubCategory'])->name('subcategory.update');
+    Route::get('/subcategory/status-change/{id}', [SubCategoryController::class, 'statusSubCategory'])->name('subcategory.status');
+    Route::post('/subcategory/delete', [SubCategoryController::class, 'deleteSubCategory'])->name('subcategory.delete');
 
 });

@@ -12,8 +12,8 @@ class CategoryController extends Controller
     }
 
     public function newCategory(Request $request){
-        Category::newCategory($request);
-        return back();
+        Category::saveCategory($request);
+        return back()->with('message', 'Category Added Successfully');
     }
     public function manage(){
         return view('admin.category.manage-category', [
@@ -27,7 +27,7 @@ class CategoryController extends Controller
     }
 
     public function updateCategory(Request $request){
-        Category::newCategory($request);
+        Category::saveCategory($request);
         return back();
     }
     public function statusCategory($id){
