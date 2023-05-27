@@ -1,7 +1,6 @@
 @extends('website.master')
 @section('title')
 @endsection
-
 @section('content')
     <section class="hero-area">
         <div class="container">

@@ -13,7 +13,7 @@ class CategoryController extends Controller
 
     public function newCategory(Request $request){
         Category::saveCategory($request);
-        return back()->with('message', 'Category Added Successfully');
+        return redirect('/category/manage')->with('message', 'Category Added Successfully');
     }
     public function manage(){
         return view('admin.category.manage-category', [
@@ -28,15 +28,15 @@ class CategoryController extends Controller
 
     public function updateCategory(Request $request){
         Category::saveCategory($request);
-        return back();
+        return redirect('/category/manage')->with('message', 'Category Updated Successfully');
     }
     public function statusCategory($id){
         Category::statusCategory($id);
-        return back();
+        return back()->with('message', 'Status Changed');
     }
 
     public function deleteCategory(Request $request){
         Category::deleteCategory($request);
-        return back();
+        return back()->with('message', 'Category Deleted Successfully');
     }
 }

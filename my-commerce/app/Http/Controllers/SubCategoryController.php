@@ -17,7 +17,7 @@ class SubCategoryController extends Controller
     public function newSubCategory(Request $request){
 //        return $request;
         SubCategory::saveSubCategory($request);
-        return back()->with('message', 'SubCategory Added Successfully');
+        return redirect('/subcategory/manage')->with('message', 'SubCategory Added Successfully');
     }
     public function manage(){
         return view('admin.subcategory.manage-subcategory', [
@@ -26,13 +26,14 @@ class SubCategoryController extends Controller
     }
     public function editSubCategory($id){
         return view('admin.subcategory.edit-subcategory', [
-            'SubCategory'=>SubCategory::find($id)
+            'subcategory'=>SubCategory::find($id),
+            'categories'=> Category::all()
         ]);
     }
 
     public function updateSubCategory(Request $request){
         SubCategory::saveSubCategory($request);
-        return back();
+        return redirect('/subcategory/manage')->with('message', 'SubCategory Updated Successfully');
     }
     public function statusSubCategory($id){
         SubCategory::statusSubCategory($id);

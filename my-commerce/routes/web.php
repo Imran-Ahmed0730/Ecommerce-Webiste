@@ -7,6 +7,8 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\UnitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,4 +53,23 @@ Route::middleware([
     Route::get('/subcategory/status-change/{id}', [SubCategoryController::class, 'statusSubCategory'])->name('subcategory.status');
     Route::post('/subcategory/delete', [SubCategoryController::class, 'deleteSubCategory'])->name('subcategory.delete');
 
+    //Brand Module
+
+    Route::get('/brand/add', [BrandController::class, 'index'])->name('add.brand');
+    Route::get('/brand/manage', [BrandController::class, 'manage'])->name('manage.brand');
+    Route::post('/brand/new', [BrandController::class, 'newBrand'])->name('brand.new');
+    Route::get('/brand/edit/{id}', [BrandController::class, 'editBrand'])->name('brand.edit');
+    Route::post('/brand/update', [BrandController::class, 'updateBrand'])->name('brand.update');
+    Route::get('/brand/status-change/{id}', [BrandController::class, 'statusBrand'])->name('brand.status');
+    Route::post('/brand/delete', [BrandController::class, 'deleteBrand'])->name('brand.delete');
+
+    //Unit Module
+
+    Route::get('/unit/add', [UnitController::class, 'index'])->name('add.unit');
+    Route::get('/unit/manage', [UnitController::class, 'manage'])->name('manage.unit');
+    Route::post('/unit/new', [UnitController::class, 'newUnit'])->name('unit.new');
+    Route::get('/unit/edit/{id}', [UnitController::class, 'editUnit'])->name('unit.edit');
+    Route::post('/unit/update', [UnitController::class, 'updateUnit'])->name('unit.update');
+    Route::get('/unit/status-change/{id}', [UnitController::class, 'statusUnit'])->name('unit.status');
+    Route::post('/unit/delete', [UnitController::class, 'deleteUnit'])->name('unit.delete');
 });
