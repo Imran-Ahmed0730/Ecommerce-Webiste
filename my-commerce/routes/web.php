@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\UnitController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,4 +73,15 @@ Route::middleware([
     Route::post('/unit/update', [UnitController::class, 'updateUnit'])->name('unit.update');
     Route::get('/unit/status-change/{id}', [UnitController::class, 'statusUnit'])->name('unit.status');
     Route::post('/unit/delete', [UnitController::class, 'deleteUnit'])->name('unit.delete');
+
+    //product Module
+
+    Route::get('/product/add', [ProductController::class, 'index'])->name('add.product');
+    Route::get('/product/get-subcategory-by-category', [ProductController::class, 'getSubCategoryByCategory'])->name('product.get-subcategory-by-category');
+    Route::get('/product/manage', [ProductController::class, 'manage'])->name('manage.product');
+    Route::post('/product/new', [ProductController::class, 'new'])->name('product.new');
+    Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::post('/product/update', [ProductController::class, 'update'])->name('product.update');
+    Route::get('/product/status-change/{id}', [ProductController::class, 'status'])->name('product.status');
+    Route::post('/product/delete', [ProductController::class, 'delete'])->name('product.delete');
 });

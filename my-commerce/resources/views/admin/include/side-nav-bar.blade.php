@@ -32,8 +32,8 @@
                 </li>
                 <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-email"></i><span class="hide-menu">Product Module</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="app-email.html">Add Product</a></li>
-                        <li><a href="app-email-detail.html">Manage Product</a></li>
+                        <li><a href="{{route('add.product')}}">Add Product</a></li>
+                        <li><a href="{{route('manage.product')}}">Manage Product</a></li>
                     </ul>
                 </li>
                 <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-email"></i><span class="hide-menu">Order Module</span></a>

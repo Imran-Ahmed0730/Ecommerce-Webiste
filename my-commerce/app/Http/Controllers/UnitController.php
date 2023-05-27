@@ -37,6 +37,6 @@ class UnitController extends Controller
 
     public function deleteUnit(Request $request){
         Unit::deleteUnit($request);
-        return back()->with('message', 'unit Deleted Successfully');
+        return back()->with('message', 'Unit Deleted Successfully');
     }
 }

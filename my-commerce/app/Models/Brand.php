@@ -9,6 +9,7 @@ class Brand extends Model
 {
     use HasFactory;
     private static $brand, $image, $imageUrl, $directory, $imageNewName;
+    protected $fillable = ['name', 'image', 'description', 'status'];
     public static function saveBrand($request){
         if (Brand::find($request->id))
         {

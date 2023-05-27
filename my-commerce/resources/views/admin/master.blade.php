@@ -19,6 +19,7 @@
     <link href="{{asset('/')}}/admin/assets/node_modules/morrisjs/morris.css" rel="stylesheet">
     <!--Toaster Popup message CSS -->
     <link href="{{asset('/')}}/admin/assets/node_modules/toast-master/css/jquery.toast.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset('/')}}/admin/assets/node_modules/summernote/dist/summernote-bs4.css">
     <!-- Custom CSS -->
     <link href="{{asset('/')}}/admin/dist/css/style.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css"
@@ -55,54 +56,16 @@
     <!-- Topbar header - style you can find in pages.scss -->
     <!-- ============================================================== -->
     @include('admin.include.header')
-    <!-- ============================================================== -->
-    <!-- End Topbar header -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Left Sidebar - style you can find in sidebar.scss  -->
-    <!-- ============================================================== -->
     @include('admin.include.side-nav-bar')
-    <!-- ============================================================== -->
-    <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Page wrapper  -->
     <div class="page-wrapper">
-        <!-- ============================================================== -->
-        <!-- Container fluid  -->
-        <!-- ============================================================== -->
         <div class="container-fluid">
-            <!-- ============================================================== -->
-            <!-- Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
             @yield('content')
-            <!-- ============================================================== -->
-            <!-- End Right sidebar -->
-            <!-- ============================================================== -->
         </div>
-        <!-- ============================================================== -->
-        <!-- End Container fluid  -->
-        <!-- ============================================================== -->
-    </div>
-    <!-- ============================================================== -->
 
-    <!-- ============================================================== -->
-    <!-- End Page wrapper  -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- footer -->
-    <!-- ============================================================== -->
+    </div>
     @include('admin.include.footer')
-    <!-- ============================================================== -->
-    <!-- End footer -->
-    <!-- ============================================================== -->
 </div>
-<!-- ============================================================== -->
-<!-- End Wrapper -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-<!-- All Jquery -->
-<!-- ============================================================== -->
+
 <script src="{{asset('/')}}/admin/assets/node_modules/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap tether Core JavaScript -->
 <script src="{{asset('/')}}/admin/assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -129,8 +92,15 @@
 <script src="{{asset('/')}}/admin/dist/js/dashboard1.js"></script>
 {{--<script src="{{asset('/')}}/admin/assets/node_modules/toast-master/js/jquery.toast.js"></script>--}}
 <script src="{{asset('/')}}/admin/assets/node_modules/dropify/dist/js/dropify.min.js"></script>
+<script src="{{asset('/')}}/admin/assets/node_modules/summernote/dist/summernote-bs4.min.js"></script>
 <script>
     $(document).ready(function() {
+        $('.summernote').summernote({
+            height: 350, // set editor height
+            minHeight: null, // set minimum height of editor
+            maxHeight: null, // set maximum height of editor
+            focus: false // set focus to editable area after initializing summernote
+        });
         // Basic
         $('.dropify').dropify();
 
@@ -220,7 +190,30 @@
         });
         $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary me-1');
     });
+</script>
+<script>
+    $(function () {
+        $(document).on('change', '#CategoryId', function () {
+            var categoryId = $(this).val();
+            $.ajax({
+                type:"GET",
+                url: "{{route('product.get-subcategory-by-category')}}",
+                data: {id: categoryId},
+                dataType: "JSON",
+                success: function (response) {
+                    var subCategoryId = $('#SubCategoryId');
+                    subCategoryId.empty();
+                    var option = '';
+                    option += '<option value="" disabled selected>Choose A Category</option>';
+                    $.each(response, function (key, value) {
+                        option +=  '<option value="'+value.id+'" disabled selected>'+value.name+'</option>';
+                    });
 
+                    subCategoryId.append(option);
+                }
+            });
+        });
+    });
 </script>
 </body>
 
