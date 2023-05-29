@@ -79,8 +79,9 @@ Route::middleware([
     Route::get('/product/add', [ProductController::class, 'index'])->name('add.product');
     Route::get('/product/get-subcategory-by-category', [ProductController::class, 'getSubCategoryByCategory'])->name('product.get-subcategory-by-category');
     Route::get('/product/manage', [ProductController::class, 'manage'])->name('manage.product');
-    Route::post('/product/new', [ProductController::class, 'new'])->name('product.new');
+    Route::post('/product/new', [ProductController::class, 'store'])->name('product.new');
     Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::get('/product/detail/{id}', [ProductController::class, 'detail'])->name('product.detail');
     Route::post('/product/update', [ProductController::class, 'update'])->name('product.update');
     Route::get('/product/status-change/{id}', [ProductController::class, 'status'])->name('product.status');
     Route::post('/product/delete', [ProductController::class, 'delete'])->name('product.delete');

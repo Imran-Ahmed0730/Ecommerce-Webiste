@@ -4,16 +4,16 @@
 @section('content')
     <div class="card mt-3">
         <div class="card-body">
-            <h4 class="card-title text-center">Manage Sub Category</h4>
+            <h4 class="card-title text-center">All Product Information</h4>
             <h6 class="card-subtitle text-center text-success">{{session('message')}}</h6>
             <div class="table-responsive m-t-40">
                 <table id="myTable" class="table table-striped border">
                     <thead>
                     <tr>
                         <th>SL</th>
-                        <th>Category Name</th>
-                        <th>Sub-Category Name</th>
-                        <th>Description</th>
+                        <th>Name</th>
+                        <th>Code</th>
+                        <th>Stock Amount</th>
                         <th>Image</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -21,38 +21,39 @@
                     </thead>
                     <tbody>
                     @php $i = 1 @endphp
-                    @foreach($subcategories as $subcategory)
+                    @foreach($products as $product)
                         <tr>
                             <td>{{$i++}}</td>
-                            <td>{{$subcategory->category->name}}</td>
-                            <td>{{$subcategory->name}}</td>
-                            <td class="col-md-3">{{$subcategory->description}}</td>
+                            <td>{{$product->name}}</td>
+                            <td>{{$product->code}}</td>
+                            <td>{{$product->stock_amount}}</td>
                             <td>
-                                <img src="{{asset($subcategory->image)}}" alt="" srcset="" class="img-fluid" width="200px">
+                                <img src="{{asset($product->feature_image)}}" alt="" srcset="" class="img-fluid" width="200px">
                             </td>
                             <td>
-                                @if($subcategory->status == 1)
-                                    <span class="text-success">Published</span>
-                                @else
-                                    <span class="text-warning">Unpublished</span>
-                                @endif
+                                {{$product->status == 1 ? 'Published': 'Unpublished'}}
+{{--                                @if($product->status == 1)--}}
+{{--                                    <span class="text-success">Published</span>--}}
+{{--                                @else--}}
+{{--                                    <span class="text-warning">Unpublished</span>--}}
+{{--                                @endif--}}
                             </td>
                             <td>
-                                <a href="{{route('subcategory.edit', ['id'=>$subcategory->id])}}" class="btn btn-success">
+                                <a href="{{route('product.edit', ['id'=>$product->id])}}" class="btn btn-success">
                                     <i class="ti ti-layout-media-center"></i>
                                 </a>
-                                @if($subcategory->status == 1)
-                                    <a href="{{route('subcategory.status', ['id'=>$subcategory->id])}}" class="btn btn-warning">
+                                @if($product->status == 1)
+                                    <a href="{{route('product.detail', ['id'=>$product->id])}}" class="btn btn-warning">
                                         <i class="ti ti-book"></i>
                                     </a>
                                 @else
-                                    <a href="{{route('subcategory.status', ['id'=>$subcategory->id])}}" class="btn btn-success">
+                                    <a href="{{route('product.status', ['id'=>$product->id])}}" class="btn btn-success">
                                         <i class="ti ti-bookmark"></i>
                                     </a>
                                 @endif
-                                <form action="{{route('subcategory.delete')}}" method="post">
+                                <form action="{{route('product.delete')}}" method="post">
                                     @csrf
-                                    <input type="hidden" name="id" value="{{$subcategory->id}}">
+                                    <input type="hidden" name="id" value="{{$product->id}}">
                                     <button type="submit" class="btn btn-danger" onclick="confirm('Confirm Before Deleting it!!')"><i class="ti ti-trash"></i></button>
                                 </form>
 
