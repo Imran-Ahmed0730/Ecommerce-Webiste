@@ -22,8 +22,8 @@ use App\Http\Controllers\ProductController;
 |
 */
 Route::get('/', [MyCommerceController::class, 'index'])->name('home');
-Route::get('/category', [MyCommerceController::class, 'category'])->name('category');
-Route::get('/details', [MyCommerceController::class, 'details'])->name('details');
+Route::get('/category/{id}', [MyCommerceController::class, 'category'])->name('category');
+Route::get('/details/{id}', [MyCommerceController::class, 'details'])->name('details');
 Route::get('/show-cart', [CartController::class, 'index'])->name('show-cart');
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 

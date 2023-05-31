@@ -61,6 +61,7 @@ class ProductController extends Controller
 
     public function delete(Request $request){
         Product::remove($request);
+        OtherImage::deleteOtherImage($request->id);
         return back()->with('message', 'Product Deleted Successfully');
     }
 

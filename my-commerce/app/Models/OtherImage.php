@@ -27,6 +27,11 @@ class OtherImage extends Model
     }
 
     public static function UpdateOtherImages($images, $id){
+        self::deleteOtherImage($id);
+        self::newOtherImage($images, $id) ;
+    }
+
+    public static function deleteOtherImage($id){
         self::$other_images = OtherImage::where('product_id', $id)->get();
         foreach (self::$other_images  as $items){
             if (file_exists($items->image)){
@@ -34,6 +39,5 @@ class OtherImage extends Model
             }
             $items->delete();
         }
-        self::newOtherImage($images, $id) ;
     }
 }
