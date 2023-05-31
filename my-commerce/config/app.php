@@ -181,9 +181,10 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Overtrue\LaravelShoppingCart\ServiceProvider::class,
         /*
          * Package Service Providers...
+         *
          */
 
         /*
@@ -212,6 +213,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'ShoppingCart'      => Overtrue\LaravelShoppingCart\Facade::class,
     ])->toArray(),
 
 ];

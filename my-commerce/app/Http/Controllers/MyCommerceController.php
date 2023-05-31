@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OtherImage;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class MyCommerceController extends Controller
         ]);
     }
 
-    public function category($id){
+    public function productCategory($id){
 //        return Product::where('category_id', $id)->orderBy('id', 'desc')->get();
         return view('website.category.category', [
             'products'=>Product::where('category_id', $id)->orderBy('id', 'desc')->get()
@@ -21,7 +22,7 @@ class MyCommerceController extends Controller
     }
     public function details($id){
         return view('website.details.details', [
-            'product'=>Product::where('id', $id)->get()
+            'product'=>Product::find($id),
         ]);
     }
 }

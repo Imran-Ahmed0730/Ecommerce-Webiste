@@ -22,9 +22,12 @@ use App\Http\Controllers\ProductController;
 |
 */
 Route::get('/', [MyCommerceController::class, 'index'])->name('home');
-Route::get('/category/{id}', [MyCommerceController::class, 'category'])->name('category');
+Route::get('/category/{id}', [MyCommerceController::class, 'productCategory'])->name('category');
 Route::get('/details/{id}', [MyCommerceController::class, 'details'])->name('details');
-Route::get('/show-cart', [CartController::class, 'index'])->name('show-cart');
+Route::get('/show-cart', [CartController::class, 'show'])->name('show-cart');
+Route::post('/add-to-cart/{id}', [CartController::class, 'index'])->name('add.cart.product');
+Route::post('/update-cart/{id}', [CartController::class, 'update'])->name('update.cart.product');
+Route::get('/add-to-cart-cart/{id}', [CartController::class, 'removeFromCart'])->name('delete.from.cart');
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 
 Route::middleware([
