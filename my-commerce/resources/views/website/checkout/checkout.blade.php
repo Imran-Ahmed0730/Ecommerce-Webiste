@@ -97,21 +97,35 @@
                         <div class="checkout-sidebar-price-table">
                             <h5 class="title">Cart Summary</h5>
                             <div class="sub-total-price">
+                                @php $totalAmount=0; @endphp
                                 @foreach(ShoppingCart::all() as $cartProduct)
                                     <div class="total-price">
                                         <p class="value">
                                             {{$cartProduct->name}}
                                             ({{$cartProduct->qty}} * {{$cartProduct->price}})
                                         </p>
-                                        <p class="price">{{$cartProduct->total}}</p>
+                                        <p class="price">{{$cartProduct->total}} TK</p>
+                                        @php $totalAmount += $cartProduct->total @endphp
                                     </div>
                                 @endforeach
 
                             </div>
                             <div class="total-payable">
                                 <div class="payable-price">
-                                    <p class="value">Subotal Price:</p>
-                                    <p class="price">$164.50</p>
+                                    <p class="value">Total Price:</p>
+                                    <p class="price">{{$totalAmount}} TK</p>
+                                </div>
+                                <div class="payable-price">
+                                    <p class="value">Tax:</p>
+                                    <p class="price">{{$totalAmount * 0.15}} TK</p>
+                                </div>
+                                <div class="payable-price">
+                                    <p class="value">Shipping Amount:</p>
+                                    <p class="price">100 TK</p>
+                                </div>
+                                <div class="payable-price">
+                                    <p class="value">Total Payable:</p>
+                                    <p class="price">{{$totalAmount+= $totalAmount *0.15}} TK</p>
                                 </div>
                             </div>
                             <div class="price-table-btn button">
