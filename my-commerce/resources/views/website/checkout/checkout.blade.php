@@ -74,6 +74,15 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12">
+                                        <div class="single-form form-default">
+                                            <label>Payment method</label>
+                                            <div class="">
+                                                <input type="radio" name="delivery_address" value="cash on delivery" checked>Cash On Delivery
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
                                         <div class="single-checkbox checkbox-style-3">
                                             <input type="checkbox" id="checkbox-3" checked>
                                             <label for="checkbox-3"><span></span></label>

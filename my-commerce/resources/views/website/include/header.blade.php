@@ -179,7 +179,7 @@
                                             <i class="lni lni-chevron-right"></i></a>
                                     <ul class="inner-sub-category">
                                         @foreach($category->subcategory as $subcat)
-                                            <li><a href="">{{$subcat->name}}</a></li>
+                                            <li><a href="{{route('subcategory', ['id'=>$subcat->id])}}">{{$subcat->name}}</a></li>
                                         @endforeach
                                     </ul>
                                     @endif

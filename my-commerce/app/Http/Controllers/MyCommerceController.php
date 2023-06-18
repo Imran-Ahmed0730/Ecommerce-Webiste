@@ -17,7 +17,13 @@ class MyCommerceController extends Controller
     public function productCategory($id){
 //        return Product::where('category_id', $id)->orderBy('id', 'desc')->get();
         return view('website.category.category', [
-            'products'=>Product::where('category_id', $id)->orderBy('id', 'desc')->get()
+            'products'=>Product::where('category_id', $id)->orderBy('id', 'desc')->get(),
+        ]);
+    }
+    public function productSubCategory($id){
+//        return Product::where('subcategory_id', $id)->orderBy('id', 'desc')->get();
+        return view('website.subcategory.subcategory', [
+            'products'=>Product::where('subcategory_id', $id)->orderBy('id', 'desc')->get(),
         ]);
     }
     public function details($id){

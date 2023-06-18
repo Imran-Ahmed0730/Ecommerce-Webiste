@@ -22,7 +22,8 @@ use App\Http\Controllers\ProductController;
 |
 */
 Route::get('/', [MyCommerceController::class, 'index'])->name('home');
-Route::get('/category/{id}', [MyCommerceController::class, 'productCategory'])->name('category');
+Route::get('/product-category/{id}', [MyCommerceController::class, 'productCategory'])->name('category');
+Route::get('/product-subcategory/{id}', [MyCommerceController::class, 'productSubCategory'])->name('subcategory');
 Route::get('/details/{id}', [MyCommerceController::class, 'details'])->name('details');
 Route::get('/show-cart', [CartController::class, 'show'])->name('show-cart');
 Route::post('/add-to-cart/{id}', [CartController::class, 'index'])->name('add.cart.product');

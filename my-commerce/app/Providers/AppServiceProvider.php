@@ -26,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
             $view->with(
                 'categories',Category::all()
             );
+//            $view->with(
+//                'subcategories', SubCategory::all()
+//            );
         });
 
     }
