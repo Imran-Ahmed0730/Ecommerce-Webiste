@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('order_timestamp');
             $table->float('order_total', 10, 2);
             $table->float('tax_total', 10, 2);
-            $table->float('shipping total', 10, 2);
+            $table->float('shipping_total', 10, 2);
             $table->string('order_status')->default('Pending');
             $table->text('delivery_address');
             $table->string('delivery_status')->default('Pending');

@@ -37,64 +37,69 @@
                         </ul>
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="cash" role="tabpanel" aria-labelledby="home-tab">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="single-form form-default">
-                                            <label>Full Name</label>
-                                            <div class="row">
-                                                <div class="col-md-12 form-input form">
-                                                    <input type="text" required name="name" placeholder="Full Name">
-                                                </div>
 
+                                    <form action="{{route('new.cash-order')}}" method="post">
+                                        @csrf
+                                        <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="single-form form-default">
+                                                <label>Full Name</label>
+                                                <div class="row">
+                                                    <div class="col-md-12 form-input form">
+                                                        <input type="text" required name="name" placeholder="Full Name">
+                                                    </div>
+
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="single-form form-default">
-                                            <label>Email Address</label>
-                                            <div class="form-input form">
-                                                <input type="email" required name="email" placeholder="Email Address">
+                                        <div class="col-md-6">
+                                            <div class="single-form form-default">
+                                                <label>Email Address</label>
+                                                <div class="form-input form">
+                                                    <input type="email" required name="email" placeholder="Email Address">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="single-form form-default">
-                                            <label>Phone Number</label>
-                                            <div class="form-input form">
-                                                <input type="text" required name="phone_number" placeholder="Phone Number">
+                                        <div class="col-md-6">
+                                            <div class="single-form form-default">
+                                                <label>Phone Number</label>
+                                                <div class="form-input form">
+                                                    <input type="text" required name="phone_number" placeholder="Phone Number">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="single-form form-default">
-                                            <label>Delivery Address</label>
-                                            <div class="form-input form">
-                                                <textarea type="text" name="delivery_address" placeholder="Delivery Address"></textarea>
+                                        <div class="col-md-12">
+                                            <div class="single-form form-default">
+                                                <label>Delivery Address</label>
+                                                <div class="form-input form">
+                                                    <textarea type="text" style="padding-top: 10px; height: 100px" name="delivery_address" placeholder="Delivery Address"></textarea>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="single-form form-default">
-                                            <label>Payment method</label>
-                                            <div class="">
-                                                <input type="radio" name="delivery_address" value="cash on delivery" checked>Cash On Delivery
-                                                
+                                        <div class="col-md-12">
+                                            <div class="single-form form-default">
+                                                <label>Payment method</label>
+                                                <div class="">
+                                                    <input type="radio" name="payment_type" value="1" class="mx-2" checked>Cash On Delivery
+
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="single-checkbox checkbox-style-3">
-                                            <input type="checkbox" id="checkbox-3" checked>
-                                            <label for="checkbox-3"><span></span></label>
-                                            <p>I accept All terms and Conditions</p>
+                                        <div class="col-md-12">
+                                            <div class="single-checkbox checkbox-style-3">
+                                                <input type="checkbox" id="checkbox-3" checked>
+                                                <label for="checkbox-3"><span></span></label>
+                                                <p>I accept All terms and Conditions</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="single-form button">
-                                            <button class="btn" type="submit">Confirm Order</button>
+                                        <div class="col-md-12">
+                                            <div class="single-form button">
+                                                <button class="btn" type="submit">Confirm Order</button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
+                                        </div>
+                                    </form>
+
                             </div>
                             <div class="tab-pane fade" id="online" role="tabpanel" aria-labelledby="profile-tab">...</div>
                         </div>
@@ -126,16 +131,22 @@
                                 </div>
                                 <div class="payable-price">
                                     <p class="value">Tax:</p>
-                                    <p class="price">{{$totalAmount * 0.15}} TK</p>
+                                    <p class="price">{{$tax = round($totalAmount * 0.15)}} TK</p>
                                 </div>
                                 <div class="payable-price">
                                     <p class="value">Shipping Amount:</p>
-                                    <p class="price">100 TK</p>
+                                    <p class="price">{{$shipping_amount = 100}} TK</p>
                                 </div>
                                 <div class="payable-price">
                                     <p class="value">Total Payable:</p>
-                                    <p class="price">{{$totalAmount+= $totalAmount *0.15}} TK</p>
+                                    <p class="price">{{$totalAmount+= $tax}} TK</p>
                                 </div>
+
+                                @php
+                                    Session::put('order_total',$totalAmount);
+                                    Session::put('tax_total', $tax);
+                                    Session::put('shipping_total', $shipping_amount);
+                                @endphp
                             </div>
                             <div class="price-table-btn button">
                                 <a href="javascript:void(0)" class="btn btn-alt">Checkout</a>

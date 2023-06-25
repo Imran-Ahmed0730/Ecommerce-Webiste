@@ -31,6 +31,9 @@ Route::post('/update-cart/{id}', [CartController::class, 'update'])->name('updat
 Route::get('/add-to-cart-cart/{id}', [CartController::class, 'removeFromCart'])->name('delete.from.cart');
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 
+Route::post('new-cash-order', [CheckoutController::class, 'newCashOrder'])->name('new.cash-order');
+Route::get('/complete-order', [CheckoutController::class, 'completeOrder'])->name('complete.order');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
