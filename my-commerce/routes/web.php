@@ -10,6 +10,7 @@ use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CustomerAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,16 @@ Route::post('/update-cart/{id}', [CartController::class, 'update'])->name('updat
 Route::get('/add-to-cart-cart/{id}', [CartController::class, 'removeFromCart'])->name('delete.from.cart');
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 
-Route::post('new-cash-order', [CheckoutController::class, 'newCashOrder'])->name('new.cash-order');
+//customer Section
+
+Route::get('/customer/login', [CustomerAuthController::class, 'index'])->name('customer.login');
+Route::post('/customer/login', [CustomerAuthController::class, 'customerLogin'])->name('customer.login');
+Route::get('customer/logout', [CustomerAuthController::class, 'customerLogout'])->name('customer.logout');
+Route::get('/customer/register', [CustomerAuthController::class, 'register'])->name('customer.register');
+Route::post('/customer/register', [CustomerAuthController::class, 'customerRegister'])->name('customer.register');
+Route::get('/customer/dashboard', [CustomerAuthController::class, 'dashboard'])->name('customer.dashboard');
+
+Route::post('/new-cash-order', [CheckoutController::class, 'newCashOrder'])->name('new.cash-order');
 Route::get('/complete-order', [CheckoutController::class, 'completeOrder'])->name('complete.order');
 
 Route::middleware([

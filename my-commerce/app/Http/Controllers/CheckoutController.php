@@ -24,6 +24,9 @@ class CheckoutController extends Controller
         $this->customer->password = bcrypt($request->phone_number);
         $this->customer->save();
 
+        Session::put('customerId', $this->customer->id);
+        Session::put('customerName', $this->customer->name);
+
         $this->order = new Order();
         $this->order->customer_id = $this->customer->id;
         $this->order->order_date = date('Y-m-d');
@@ -43,7 +46,7 @@ class CheckoutController extends Controller
             $this->orderDetails->product_quantity = $item->qty;
             $this->orderDetails->product_price = $item->price;
             $this->orderDetails->save();
-            ShoppingCart::remove($item->id);
+            ShoppingCart::remove($item->__raw_id);
         }
 
         return redirect('/complete-order')->with('message', 'Your Order Has been Submitted Please Wait for the Confirmation');
