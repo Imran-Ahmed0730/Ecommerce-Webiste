@@ -11,7 +11,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CustomerAuthController;
-
+use App\Http\Controllers\CustomerOrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,6 +40,12 @@ Route::get('customer/logout', [CustomerAuthController::class, 'customerLogout'])
 Route::get('/customer/register', [CustomerAuthController::class, 'register'])->name('customer.register');
 Route::post('/customer/register', [CustomerAuthController::class, 'customerRegister'])->name('customer.register');
 Route::get('/customer/dashboard', [CustomerAuthController::class, 'dashboard'])->name('customer.dashboard');
+Route::get('/customer/profile', [CustomerAuthController::class, 'dashboard'])->name('customer.profile');
+Route::get('/customer/orders', [CustomerOrderController::class, 'index'])->name('customer.orders');
+Route::get('/customer/account', [CustomerAuthController::class, 'dashboard'])->name('customer.account');
+Route::get('/customer/change-password', [CustomerAuthController::class, 'dashboard'])->name('customer.change.password');
+
+//Order Section
 
 Route::post('/new-cash-order', [CheckoutController::class, 'newCashOrder'])->name('new.cash-order');
 Route::get('/complete-order', [CheckoutController::class, 'completeOrder'])->name('complete.order');

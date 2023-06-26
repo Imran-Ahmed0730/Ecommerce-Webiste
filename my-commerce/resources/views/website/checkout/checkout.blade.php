@@ -40,34 +40,66 @@
 
                                     <form action="{{route('new.cash-order')}}" method="post">
                                         @csrf
-                                        <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="single-form form-default">
-                                                <label>Full Name</label>
-                                                <div class="row">
-                                                    <div class="col-md-12 form-input form">
-                                                        <input type="text" required name="name" placeholder="Full Name">
-                                                    </div>
+                                            <div class="row">
+                                                @if($customer)
+                                                <div class="col-md-12">
+                                                    <div class="single-form form-default">
+                                                        <label>Full Name</label>
+                                                        <div class="row">
+                                                            <div class="col-md-12 form-input form">
+                                                                <input type="text" required name="name" value="{{$customer->name}}" readonly>
+                                                            </div>
 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="single-form form-default">
+                                                        <label>Email Address</label>
+                                                        <div class="form-input form">
+                                                            <input type="email" required name="email" value="{{$customer->email}}" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="single-form form-default">
+                                                        <label>Phone Number</label>
+                                                        <div class="form-input form">
+                                                            <input type="text" required name="phone_number" value="{{$customer->mobile}}" readonly>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="single-form form-default">
-                                                <label>Email Address</label>
-                                                <div class="form-input form">
-                                                    <input type="email" required name="email" placeholder="Email Address">
+                                        @else
+                                            <div class="col-md-12">
+                                                <div class="single-form form-default">
+                                                    <label>Full Name</label>
+                                                    <div class="row">
+                                                        <div class="col-md-12 form-input form">
+                                                            <input type="text" required name="name" placeholder="Full Name">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="single-form form-default">
-                                                <label>Phone Number</label>
-                                                <div class="form-input form">
-                                                    <input type="text" required name="phone_number" placeholder="Phone Number">
+                                            <div class="col-md-6">
+                                                <div class="single-form form-default">
+                                                    <label>Email Address</label>
+                                                    <div class="form-input form">
+                                                        <input type="email" required name="email" placeholder="Email Address">
+                                                        <span class="text-danger">{{$errors->has('email')? $errors->first('email') : ''}}</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            <div class="col-md-6">
+                                                <div class="single-form form-default">
+                                                    <label>Phone Number</label>
+                                                    <div class="form-input form">
+                                                        <input type="text" required name="phone_number" placeholder="Phone Number">
+                                                        <span class="text-danger">{{$errors->has('phone_number') ? $errors->first('phone_number') : ''}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
                                         <div class="col-md-12">
                                             <div class="single-form form-default">
                                                 <label>Delivery Address</label>
@@ -97,7 +129,7 @@
                                                 <button class="btn" type="submit">Confirm Order</button>
                                             </div>
                                         </div>
-                                        </div>
+
                                     </form>
 
                             </div>

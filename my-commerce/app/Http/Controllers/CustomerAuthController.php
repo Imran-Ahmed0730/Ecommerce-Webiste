@@ -37,7 +37,7 @@ class CustomerAuthController extends Controller
         return view('customer.register');
     }
     public function customerRegister(Request $request){
-        Customer::;
+//        Customer::;
     }
 
     public function dashboard(){
