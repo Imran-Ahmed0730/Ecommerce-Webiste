@@ -1,0 +1,6 @@
+SSL Commerze Integration:
+1. Create a sandox account
+2. Remember User name and Password
+3. Add URL of Project in the My stores IPN settings. 
+4. Follow the Mails github link's larave repository steps
+5. Add Project link in the .env file's APP URL section.

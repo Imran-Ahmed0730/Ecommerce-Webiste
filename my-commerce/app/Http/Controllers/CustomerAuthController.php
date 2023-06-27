@@ -37,7 +37,20 @@ class CustomerAuthController extends Controller
         return view('customer.register');
     }
     public function customerRegister(Request $request){
-//        Customer::;
+//        return $request;
+        $this->customerValidation($request);
+        $this->customer = Customer::newCustomer($request);
+//        return $this->customer;
+        Session::put('customerId', $this->customer->id);
+        Session::put('customerName', $this->customer->name);
+        return redirect('/');
+    }
+    private function customerValidation($request){
+        $this->validate($request, [
+            'name'=>'required',
+            'email'=>'required|unique:customers,email',
+            'phone_number'=>'required|unique:customers,mobile',
+        ]);
     }
 
     public function dashboard(){

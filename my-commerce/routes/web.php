@@ -12,6 +12,7 @@ use App\Http\Controllers\UnitController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CustomerAuthController;
 use App\Http\Controllers\CustomerOrderController;
+use App\Http\Controllers\SslCommerzPaymentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,7 +39,7 @@ Route::get('/customer/login', [CustomerAuthController::class, 'index'])->name('c
 Route::post('/customer/login', [CustomerAuthController::class, 'customerLogin'])->name('customer.login');
 Route::get('customer/logout', [CustomerAuthController::class, 'customerLogout'])->name('customer.logout');
 Route::get('/customer/register', [CustomerAuthController::class, 'register'])->name('customer.register');
-Route::post('/customer/register', [CustomerAuthController::class, 'customerRegister'])->name('customer.register');
+Route::post('/customer/new', [CustomerAuthController::class, 'customerRegister'])->name('customer.new');
 Route::get('/customer/dashboard', [CustomerAuthController::class, 'dashboard'])->name('customer.dashboard');
 Route::get('/customer/profile', [CustomerAuthController::class, 'dashboard'])->name('customer.profile');
 Route::get('/customer/orders', [CustomerOrderController::class, 'index'])->name('customer.orders');
@@ -49,6 +50,19 @@ Route::get('/customer/change-password', [CustomerAuthController::class, 'dashboa
 
 Route::post('/new-cash-order', [CheckoutController::class, 'newCashOrder'])->name('new.cash-order');
 Route::get('/complete-order', [CheckoutController::class, 'completeOrder'])->name('complete.order');
+
+// SSLCOMMERZ Start
+Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 
 Route::middleware([
     'auth:sanctum',
