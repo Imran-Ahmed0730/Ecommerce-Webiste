@@ -114,7 +114,7 @@
                                     <ul>
                                         <li>Cart Subtotal<span>{{$sum}} TK</span></li>
                                         <li>Tax (15%)<span>{{$tax = round($sum*0.15)}} TK</span></li>
-                                        <li>Shipping<span>{{ShoppingCart::all() == null ? $shipping=100: $shipping=0}} TK</span></li>
+                                        <li>Shipping<span>{{ShoppingCart::all() == null ? $shipping=0: $shipping=100}} TK</span></li>
                                         <li class="last">Total Payable<span>{{$totalPayable = $sum+$tax+$shipping}} TK</span></li>
                                     </ul>
                                     <div class="button">

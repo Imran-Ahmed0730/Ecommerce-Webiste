@@ -13,6 +13,7 @@ class CheckoutController extends Controller
 {
     private $customer, $order, $orderDetails;
     public function index(){
+//        return Session::get('customerName');
         return view('website.checkout.checkout', [
             'customer'=>Customer::find(Session::get('customerId'))
         ]);
