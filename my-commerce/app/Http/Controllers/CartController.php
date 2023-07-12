@@ -32,7 +32,7 @@ class CartController extends Controller
     public function update( Request $request, $id){
 //        return $request;
         ShoppingCart::update($id, $request->qty);
-        return back()->with('message', 'Item Removed');
+        return back()->with('message', 'Item Updated');
     }
     public function removeFromCart($id){
         ShoppingCart::remove($id);

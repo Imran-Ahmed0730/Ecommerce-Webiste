@@ -13,6 +13,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CustomerAuthController;
 use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\SslCommerzPaymentController;
+use App\Http\Controllers\AdminOrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +30,7 @@ Route::get('/product-subcategory/{id}', [MyCommerceController::class, 'productSu
 Route::get('/details/{id}', [MyCommerceController::class, 'details'])->name('details');
 Route::get('/show-cart', [CartController::class, 'show'])->name('show-cart');
 Route::post('/add-to-cart/{id}', [CartController::class, 'index'])->name('add.cart.product');
-Route::post('/update-cart/{id}', [CartController::class, 'update'])->name('update.cart.product');
+Route::post('/update-cart/{id}', [CartController::class, 'uphppdate'])->name('update.cart.product');
 Route::get('/add-to-cart-cart/{id}', [CartController::class, 'removeFromCart'])->name('delete.from.cart');
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 
@@ -40,12 +41,19 @@ Route::post('/customer/login', [CustomerAuthController::class, 'customerLogin'])
 Route::get('customer/logout', [CustomerAuthController::class, 'customerLogout'])->name('customer.logout');
 Route::get('/customer/register', [CustomerAuthController::class, 'register'])->name('customer.register');
 Route::post('/customer/new', [CustomerAuthController::class, 'customerRegister'])->name('customer.new');
-Route::get('/customer/dashboard', [CustomerAuthController::class, 'dashboard'])->name('customer.dashboard');
-Route::get('/customer/profile', [CustomerAuthController::class, 'dashboard'])->name('customer.profile');
-Route::get('/customer/orders', [CustomerOrderController::class, 'index'])->name('customer.orders');
-Route::get('/customer/account', [CustomerAuthController::class, 'dashboard'])->name('customer.account');
-Route::get('/customer/change-password', [CustomerAuthController::class, 'dashboard'])->name('customer.change.password');
 
+Route::middleware([
+    'customer',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+
+    Route::get('/customer/dashboard', [CustomerAuthController::class, 'dashboard'])->name('customer.dashboard');
+    Route::get('/customer/profile', [CustomerAuthController::class, 'dashboard'])->name('customer.profile');
+    Route::get('/customer/orders', [CustomerOrderController::class, 'index'])->name('customer.orders');
+    Route::get('/customer/account', [CustomerAuthController::class, 'dashboard'])->name('customer.account');
+    Route::get('/customer/change-password', [CustomerAuthController::class, 'dashboard'])->name('customer.change.password');
+});
 //Order Section
 
 Route::post('/new-cash-order', [CheckoutController::class, 'newCashOrder'])->name('new.cash-order');
@@ -122,4 +130,13 @@ Route::middleware([
     Route::post('/product/update', [ProductController::class, 'update'])->name('product.update');
     Route::get('/product/status-change/{id}', [ProductController::class, 'status'])->name('product.status');
     Route::post('/product/delete', [ProductController::class, 'delete'])->name('product.delete');
+
+    //order Module
+    Route::get('/order/manage', [AdminOrderController::class, 'index'])->name('manage.order');
+    Route::get('/order/details/{id}', [AdminOrderController::class, 'details'])->name('order.details');
+    Route::get('/order/edit/{id}', [AdminOrderController::class, 'edit'])->name('order.edit');
+    Route::post('/order/update', [AdminOrderController::class, 'update'])->name('order.update');
+    Route::get('/order/invoice/show/{id}', [AdminOrderController::class, 'showInvoice'])->name('order.invoice.show');
+    Route::get('/order/invoice/print/{id}', [AdminOrderController::class, 'printInvoice'])->name('order.invoice.print');
+    Route::post('/order/delete', [AdminOrderController::class, 'remove'])->name('order.delete');
 });

@@ -21,4 +21,5 @@ class OrderDetail extends Model
             ShoppingCart::remove($item->__raw_id);
         }
     }
+
 }
