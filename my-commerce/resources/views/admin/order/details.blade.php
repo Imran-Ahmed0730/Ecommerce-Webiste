@@ -78,6 +78,10 @@
                         <th>Contact No</th>
                         <td>{{$order->customer->mobile}}</td>
                     </tr>
+                    <tr>
+                        <th>Customer Address</th>
+                        <td>{{$order->customer->address}}</td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -90,17 +94,22 @@
                 <table id="myTable" class="table table-striped border">
                     <thead>
                         <tr>
+                            <th>SL NO</th>
                             <th>Product Name</th>
                             <th>Unit Price</th>
                             <th>Quantity</th>
+                            <th>Total Amount</th>
                         </tr>
                     </thead>
                     <tbody>
+                    @php $i=1 @endphp
                         @foreach($products as $product)
                             <tr>
+                                <td>{{$i++}}.</td>
                                 <td>{{$product->product_name}}</td>
                                 <td>{{$product->product_price}}</td>
                                 <td>{{$product->product_quantity}}</td>
+                                <td>{{$order->order_total}}</td>
                             </tr>
                         @endforeach
                     </tbody>
