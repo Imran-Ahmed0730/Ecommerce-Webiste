@@ -36,17 +36,17 @@
                             <td>
                                 {{$order->payment_status}}
                             </td>
-                            <td>
+                            <td class="btn-group">
                                 <a href="{{route('order.details', ['id'=>$order->id])}}" class="btn btn-info">
                                     <i class="ti ti-info"></i>
                                 </a>
-                                <a href="{{route('order.edit', ['id'=>$order->id])}}" class="btn btn-success">
-                                    <i class="ti ti-layout-media-center"></i>
+                                <a href="{{route('order.edit', ['id'=>$order->id])}}" class="btn btn-success mx-2">
+                                    <i class="ti ti-pencil"></i>
                                 </a>
                                 <a href="{{route('order.invoice.show', ['id'=>$order->id])}}" class="btn btn-warning">
-                                    <i class="ti ti-notepad"></i>
+                                    <i class="ti ti-layout-media-overlay-alt-2"></i>
                                 </a>
-                                <a href="{{route('order.invoice.print', ['id'=>$order->id])}}" class="btn btn-primary">
+                                <a href="{{route('order.invoice.print', ['id'=>$order->id])}}" class="btn btn-primary mx-2">
                                     <i class="ti ti-printer"></i>
                                 </a>
                                 <form action="{{route('order.delete')}}" method="post">
