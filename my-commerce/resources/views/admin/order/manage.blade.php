@@ -52,7 +52,7 @@
                                 <form action="{{route('order.delete')}}" method="post">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$order->id}}">
-                                    <button type="submit" class="btn btn-danger" onclick="confirm('Confirm Before Deleting it!!')"><i class="ti ti-trash"></i></button>
+                                    <button type="submit" class="btn btn-danger" onclick=" return confirm('Confirm Before Deleting it!!')"><i class="ti ti-trash"></i></button>
                                 </form>
 
 

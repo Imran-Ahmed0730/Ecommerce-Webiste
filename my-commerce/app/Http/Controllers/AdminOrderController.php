@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
+use PDF;
 
 class AdminOrderController extends Controller
 {
@@ -60,9 +61,12 @@ class AdminOrderController extends Controller
         ]);
     }
     public function printInvoice($id){
-        return view('admin.order.print-invoice', [
-            'order'=>Order::find($id)
-        ]);
+        $order = Order::find($id);
+        $pdf = PDF::loadView('admin.order.print-invoice',['order'=>$order]);
+        return $pdf->stream();
+//        return view('admin.order.print-invoice', [
+//            'order'=>Order::find($id)
+//        ]);
     }
 
 }
