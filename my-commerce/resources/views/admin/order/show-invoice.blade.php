@@ -3,6 +3,7 @@
     Order Invoice
 @endsection
 @section('content')
+
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -100,7 +101,7 @@
                                 <div class="col-md-8">
                                     <p class="ms-3"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
                                             class="me-1 fw-bold">Payment Method:</span><span class="badge bg-warning text-black fw-bold">
-                                            {{$order->payment_method == 1 ? 'Cash':'Online'}}</span></p>
+                                            {{$order->payment_type == 1 ? 'Cash':'Online'}}</span></p>
 
                                 </div>
                                 <div class="col-md-4 text-end">

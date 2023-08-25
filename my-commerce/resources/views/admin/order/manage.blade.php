@@ -40,19 +40,19 @@
                                 <a href="{{route('order.details', ['id'=>$order->id])}}" class="btn btn-info">
                                     <i class="ti ti-info"></i>
                                 </a>
-                                <a href="{{route('order.edit', ['id'=>$order->id])}}" class="btn btn-success mx-2">
+                                <a href="{{route('order.edit', ['id'=>$order->id])}}" class="btn btn-success mx-2 {{$order->order_status == 'Complete' ? 'disabled':''}}">
                                     <i class="ti ti-pencil"></i>
                                 </a>
                                 <a href="{{route('order.invoice.show', ['id'=>$order->id])}}" class="btn btn-warning">
                                     <i class="ti ti-layout-media-overlay-alt-2"></i>
                                 </a>
-                                <a href="{{route('order.invoice.print', ['id'=>$order->id])}}" class="btn btn-primary mx-2">
+                                <a href="{{route('order.invoice.print', ['id'=>$order->id])}}" target="_blank" class="btn btn-primary mx-2">
                                     <i class="ti ti-printer"></i>
                                 </a>
                                 <form action="{{route('order.delete')}}" method="post">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$order->id}}">
-                                    <button type="submit" class="btn btn-danger" onclick=" return confirm('Confirm Before Deleting it!!')"><i class="ti ti-trash"></i></button>
+                                    <button type="submit" class="btn btn-danger {{$order->order_status == 'Cancel' ? '':'disabled'}}" onclick=" return confirm('Confirm Before Deleting it!!')"><i class="ti ti-trash"></i></button>
                                 </form>
 
 

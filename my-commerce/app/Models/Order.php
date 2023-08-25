@@ -25,6 +25,10 @@ class Order extends Model
         self::$order->save();
         return self::$order;
     }
+    public static function remove($id){
+        self::$order = Order::find($id);
+        self::$order->delete();
+    }
 
     public function customer(){
         return $this->belongsTo(Customer::class);

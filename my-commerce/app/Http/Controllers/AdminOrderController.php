@@ -63,10 +63,16 @@ class AdminOrderController extends Controller
     public function printInvoice($id){
         $order = Order::find($id);
         $pdf = PDF::loadView('admin.order.print-invoice',['order'=>$order]);
-        return $pdf->stream();
-//        return view('admin.order.print-invoice', [
-//            'order'=>Order::find($id)
-//        ]);
+        return $pdf->stream($id.'-order.pdf');
+
+    }
+
+    public function remove(Request $request){
+        if (Order::find($request->id)->order_status=='Cancel'){
+            Order::remove($request->id);
+            OrderDetail::remove($request->id);
+            return back()->with('message', 'Order Deleted Successfully');
+        }
     }
 
 }

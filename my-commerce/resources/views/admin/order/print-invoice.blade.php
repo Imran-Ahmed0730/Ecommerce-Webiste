@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{asset('website')}}/assets/css/bootstrap.min.css" />
     <title>Invoice {{$order->id}}</title>
 </head>
 <body>
@@ -13,21 +14,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="container mb-5 mt-3">
-                    <div class="row d-flex align-items-baseline">
-                        <div class="col-md-9">
-                            <p style="color: #7e8d9f;font-size: 20px;">Invoice >> <strong>ID: #000{{$order->id}}</strong></p>
-                        </div>
-                        <div class="col-md-3 float-end">
-                            <a class="btn btn-light text-capitalize border-0" data-mdb-ripple-color="dark"><i
-                                    class="ti ti-printer text-primary"></i> Print</a>
-                            <a class="btn btn-light text-capitalize border-0" data-mdb-ripple-color="dark"><i
-                                    class="ti ti-export text-primary"></i> Export</a>
-
-                        </div>
-                        <hr>
-                    </div>
-
-                    <div class="container">
+                    <div class="">
                         <div class="row">
                             <div class="col-md-12" >
                                 <div class="text-center">

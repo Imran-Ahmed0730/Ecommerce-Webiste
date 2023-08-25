@@ -22,4 +22,11 @@ class OrderDetail extends Model
         }
     }
 
+    public static function remove($id){
+        self::$orderDetails = OrderDetail::where('order_id', $id)->get();
+        foreach (self::$orderDetails as $items){
+            $items->delete();
+        }
+    }
+
 }
